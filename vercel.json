@@ -1,11 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "installCommand": "pnpm install",
-  "buildCommand": "pnpm build",
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 300
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://*.lovable.app https://*.lovableproject.com https://mixxclubonline.com https://*.mixxclubonline.com http://localhost:*"
+        }
+      ]
     }
-  }
+  ]
 }
