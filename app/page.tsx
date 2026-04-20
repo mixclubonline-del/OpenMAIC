@@ -458,19 +458,17 @@ function HomePage() {
         )}
       >
         {/* ── Logo ── */}
-        <motion.img
-          src="/logo-horizontal.png"
-          alt="OpenMAIC"
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            delay: 0.1,
-            type: 'spring',
-            stiffness: 200,
-            damping: 20,
-          }}
-          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
-        />
+          transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 20 }}
+          className="flex items-center gap-3 mb-2"
+        >
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-[#ff8f66] flex items-center justify-center shadow-[0_0_20px_rgba(250,92,46,0.3)]">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">MixxClub <span className="font-light text-muted-foreground">Academy</span></h1>
+        </motion.div>
 
         {/* ── Slogan ── */}
         <motion.p
@@ -585,6 +583,28 @@ function HomePage() {
             </div>
           </div>
         </motion.div>
+
+        {/* ── MixxClub Quick Start Courses ── */}
+        <div className="w-full mt-6 mb-4 flex flex-col items-center">
+          <p className="text-[11px] font-semibold text-primary/80 mb-3 uppercase tracking-widest flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5"/> Premium Courses</p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {[
+              { title: "Module 1: Gain Staging", prompt: 'Create an interactive mixing lesson based on "The Modern Mix: Module 1". Teach the student how to organize a messy session, use VCA routing, set up color-coded drum/vocal buses, and hit the -18dBFS gain staging sweet spot before mixing.' },
+              { title: "Module 2: Kick & Bass", prompt: 'Create an interactive mixing lesson based on "The Modern Mix: Module 2". Teach the student exactly how to mix a Kick and 808/Bass synth so they do not clash. Explain phase alignment, surgical EQ, and sidechain compression.' },
+              { title: "Module 3: Drum Bus", prompt: 'Create an interactive mixing lesson based on "The Modern Mix: Module 3". Teach the student how to glue a drum kit together using Drum Bus compression, parallel New York style compression, and transient shapers.' },
+              { title: "Module 4: Vocals", prompt: 'Create an interactive mixing lesson based on "The Modern Mix: Module 4". Walk the student through a modern Pop/Hip-Hop vocal chain: Tuning -> Subtractive EQ -> Fast Compression -> De-essing -> Tone EQ -> Delay throws.' },
+              { title: "Module 5: Depth & Bus", prompt: 'Create an interactive mixing lesson based on "The Modern Mix: Module 5". Teach the student how to add 3D depth using reverb pre-delay and then master the Mix Bus using top-down processing and saturation.' }
+            ].map(course => (
+              <button
+                key={course.title}
+                onClick={() => updateForm('requirement', course.prompt)}
+                className="px-3 py-1.5 text-[12px] font-medium bg-card/60 text-muted-foreground border border-border/50 rounded-full hover:border-primary/50 hover:text-primary transition-all duration-200 cursor-pointer shadow-sm hover:shadow-primary/10 hover:-translate-y-0.5"
+              >
+                 {course.title}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* ── Error ── */}
         <AnimatePresence>
